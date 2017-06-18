@@ -380,6 +380,26 @@ function getAt(...$args) {
     return call_user_func_array($getAt, $args);
 }
 
+const getThese = __NAMESPACE__ . '\getThese';
+
+/**
+ * Gets values of the provided keys.  If they don't exist, use the provided default value.
+ *
+ * @param array $indexesAndDefaults  Keys are the keys to look for in the provided array.  Values are default values to fill in if key is not set in provided array.
+ * @param array $arr Get values from this array.
+ */
+function getThese(...$args) {
+    $getThese = curry(function($indexesAndDefaults, $arr) {
+        return reduceKV(function($acc, $key, $defaultValue) use ($arr) {
+            return isset($arr[$key])
+                ? setAt($key, $arr[$key], $acc)
+                : setAt($key, $defaultValue, $acc);
+        }, [], $indexesAndDefaults);
+    });
+
+    return call_user_func_array($getThese, $args);
+}
+
 const hasAt = __NAMESPACE__ . '\hasAt';
 
 /**
