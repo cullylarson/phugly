@@ -1118,3 +1118,20 @@ function memoize($f) {
         return $ret;
     };
 }
+
+const concat = __NAMESPACE__ . '\concat';
+
+/**
+ * Taktes to strings and concats them together.  The first argument comes first in the string, then the second.
+ *
+ * @param string $a
+ * @param string $b
+ * @return string
+ */
+function concat(...$args) {
+    $concat = curry(function($a, $b) {
+        return $a . $b;
+    });
+
+    return call_user_func_array($concat, $args);
+}
