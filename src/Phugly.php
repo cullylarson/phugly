@@ -584,6 +584,31 @@ function firstN(...$args) {
     return call_user_func_array($firstN, $args);
 }
 
+const lastN = __NAMESPACE__ . '\lastN';
+
+/**
+ * Gets the last N items of an array. Preserves array keys.
+ *
+ * If keys are numeric, they will be preserved, but the 'lastness' is determined
+ * by array order, not the numeric order of keys.
+ *
+ * @param int $n
+ * @param array $arr
+ * @return array
+ */
+function lastN(...$args) {
+    $lastN = curry(function($n, $arr) {
+        $diff = count($arr) - $n;
+        $offset = $diff < 0
+            ? 0
+            : $diff;
+
+        return array_slice($arr, $offset, $n, true); // the last true preserves numeric keys
+    });
+
+    return call_user_func_array($lastN, $args);
+}
+
 const rest = __NAMESPACE__ . '\rest';
 
 /**
