@@ -642,13 +642,13 @@ function last(array $arr) {
 const tail = __NAMESPACE__ . '\tail';
 
 /**
- * Returns an array with all but the first item.
+ * Returns an array with all but the first item. Preserves array indexes, but possibly not the order.
  *
  * @param array $arr
  * @return array
  */
 function tail(array $arr) {
-    return array_slice($arr, 1);
+    return array_slice($arr, 1, null, true);
 }
 
 const glue = __NAMESPACE__ . '\glue';
