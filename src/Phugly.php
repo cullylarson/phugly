@@ -735,6 +735,18 @@ function liftArray($val) {
         : [$val];
 }
 
+const liftA = __NAMESPACE__ . '\liftA';
+
+/**
+ * Alias of: liftArray
+ *
+ * @param mixed $val
+ * @return array
+ */
+function liftA($val) {
+    return liftArray($val);
+}
+
 const liftF = __NAMESPACE__ . '\liftF';
 
 /**
