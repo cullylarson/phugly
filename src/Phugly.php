@@ -584,9 +584,11 @@ const getRand = __NAMESPACE__ . '\getRand';
  * Get a random value from an array.
  *
  * @param array $arr
- * @return mixed
+ * @return mixed|null A random value from the array, or null if the array is empty.
  */
 function getRand($arr) {
+    if(empty($arr)) return null;
+
     $arrVals = array_values($arr);
     return $arrVals[rand(0, count($arrVals) - 1)];
 }
