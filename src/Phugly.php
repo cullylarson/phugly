@@ -179,6 +179,9 @@ function bookend(...$args) {
 
 const call = __NAMESPACE__ . '\call';
 
+/**
+ * Just a shorthand for call_user_func_array.
+ */
 function call(...$args) {
     return call_user_func_array(first($args), tail($args));
 }
@@ -495,6 +498,14 @@ function filterK(...$args) {
 
 const first = __NAMESPACE__ . '\first';
 
+/**
+ * Get the first item in an array based on key order. You can provide an array that is not
+ * numerically indexed, or not continuously numerically indexed and it will still get the first
+ * item.
+ *
+ * @param array $arr
+ * @return mixed|null First item or null if the array is empty.
+ */
 function first(array $arr) {
     return empty($arr)
         ? null
@@ -569,6 +580,12 @@ function getAt(...$args) {
 
 const getRand = __NAMESPACE__ . '\getRand';
 
+/**
+ * Get a random value from an array.
+ *
+ * @param array $arr
+ * @return mixed
+ */
 function getRand($arr) {
     $arrVals = array_values($arr);
     return $arrVals[rand(0, count($arrVals) - 1)];
@@ -713,6 +730,12 @@ function isEmpty($val) {
 
 const last = __NAMESPACE__ . '\last';
 
+/**
+ * Get the last item in an array, based on key order.
+ *
+ * @param array $arr
+ * @return mixed|null Last item, or null if array is empty.
+ */
 function last(array $arr) {
     $vals = array_values($arr);
 
