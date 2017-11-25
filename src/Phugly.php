@@ -339,9 +339,22 @@ const dump = __NAMESPACE__ . '\dump';
  * @return mixed Will return the provided var.
  */
 function dump($var) {
-    echo "<pre>";
-    var_dump($var);
-    echo "</pre>";
+    $dumpCli = function($var) {
+        var_dump($var);
+    };
+
+    $dumpWeb = function($far) {
+        echo "<pre>";
+        var_dump($var);
+        echo "</pre>";
+    };
+
+    if(function_exists('php_sapi_name') && php_sapi_name() === 'cli') {
+        $dumpCli($var);
+    }
+    else {
+        $dumpWeb($var);
+    }
 
     return $var;
 }
@@ -360,9 +373,23 @@ const dumpM = __NAMESPACE__ . '\dumpM';
  */
 function dumpM(...$args) {
     $dump = curry(function($msg, $var) {
-        echo "<pre>$msg -------\n\n";
-        var_dump($var);
-        echo "</pre>";
+        $dumpCli = function($msg, $var) {
+            echo "$msg -------\n\n";
+            var_dump($var);
+        };
+
+        $dumpWeb = function($msg, $far) {
+            echo "<pre>$msg -------\n\n";
+            var_dump($var);
+            echo "</pre>";
+        };
+
+        if(function_exists('php_sapi_name') && php_sapi_name() === 'cli') {
+            $dumpCli($msg, $var);
+        }
+        else {
+            $dumpWeb($msg, $var);
+        }
 
         return $var;
     });
