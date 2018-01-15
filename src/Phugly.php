@@ -532,6 +532,23 @@ function firstN(...$args) {
     return call_user_func_array($firstN, $args);
 }
 
+const flatten = __NAMESPACE__ . '\flatten';
+
+/**
+ * Returns a one-dimensional array consisting of all items from the provided array and
+ * any of its sub-arrays. Will preserve the order of the items (depth-first)
+ *
+ * @param array $xs
+ * @return array
+ */
+function flatten($xs) {
+    return reduce(function($acc, $x) {
+        return is_array($x)
+            ? appendAll(null, flatten($x), $acc)
+            : append(null, $x, $acc);
+    }, [], $xs);
+}
+
 const flip = __NAMESPACE__ . '\flip';
 
 /**
