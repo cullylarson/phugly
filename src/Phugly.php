@@ -1142,6 +1142,24 @@ function repeat(...$args) {
     return call_user_func_array($repeat, $args);
 }
 
+const replace = __NAMESPACE__ . '\replace';
+
+/**
+ * Does a simple string replace (a la str_replace). Does not do regex.
+ *
+ * @param string $search Find this string.
+ * @param string $repalce And replace all occurrences with this string.
+ * @param string $subject In this string.
+ * @return string
+ */
+function replace(...$args) {
+    $replace = curry(function($search, $replace, $subject) {
+        return str_replace($search, $replace, $subject);
+    });
+
+    return call_user_func_array($replace, $args);
+}
+
 const rest = __NAMESPACE__ . '\rest';
 
 /**
