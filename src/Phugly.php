@@ -346,7 +346,7 @@ function dump($var) {
         var_dump($var);
     };
 
-    $dumpWeb = function($far) {
+    $dumpWeb = function($var) {
         echo "<pre>";
         var_dump($var);
         echo "</pre>";
@@ -381,7 +381,7 @@ function dumpM(...$args) {
             var_dump($var);
         };
 
-        $dumpWeb = function($msg, $far) {
+        $dumpWeb = function($msg, $var) {
             echo "<pre>$msg -------\n\n";
             var_dump($var);
             echo "</pre>";
