@@ -2,6 +2,10 @@
 
 > Functional programming in PHP is pretty ugly, but at least it's possible.
 
+```
+composer require cullylarson/phugly
+```
+
 ### Install dependencies
 
 ```
